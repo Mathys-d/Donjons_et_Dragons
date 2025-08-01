@@ -10,7 +10,7 @@ public class Dice {
     }
 
     public int rollDice() {
-        this.diceNumber = rand.nextInt(6) + 1; // nombre entre 1 et 6
+        this.diceNumber = rand.nextInt(6) + 1;
         return this.diceNumber;
     }
 

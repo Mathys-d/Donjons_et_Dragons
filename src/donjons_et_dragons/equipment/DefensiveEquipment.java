@@ -2,19 +2,19 @@ package donjons_et_dragons.equipment;
 
 public abstract class DefensiveEquipment {
 
-    protected String DefensiveEquipment;
+    protected String defensiveEquipment;
     protected int pvChange;
 
 
     public DefensiveEquipment (int pvChange,  String DefensiveEquipment){
-        this.DefensiveEquipment = DefensiveEquipment;
+        this.defensiveEquipment = DefensiveEquipment;
         this.pvChange = pvChange;
     }
 
     public String getDefensiveEquipment() {
-        return DefensiveEquipment;
+        return defensiveEquipment;
     }public void setDefensiveEquipment(String defensiveEquipment) {
-        DefensiveEquipment = defensiveEquipment;
+        this.defensiveEquipment = defensiveEquipment;
     }
 
     public int getPvChange() {
