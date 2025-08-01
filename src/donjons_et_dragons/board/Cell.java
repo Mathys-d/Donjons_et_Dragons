@@ -3,11 +3,11 @@ package donjons_et_dragons.board;
 
 public class Cell {
     protected boolean hasEnemy;
-    protected boolean hasPotion;
+    protected boolean DefensiveEquipment;
 
-    public Cell(boolean hasEnemy, boolean hasPotion) {
+    public Cell(boolean hasEnemy, boolean DefensiveEquipment) {
         this.hasEnemy = hasEnemy;
-        this.hasPotion = hasPotion;
+        this.DefensiveEquipment = DefensiveEquipment;
     }
 
     public boolean isHasEnemy() {
@@ -16,16 +16,16 @@ public class Cell {
         this.hasEnemy = hasEnemy;
     }
 
-    public boolean isHasPotion() {
-        return hasPotion;
-    }public void setHasPotion(boolean hasPotion) {
-        this.hasPotion = hasPotion;
+    public boolean isDefensiveEquipment() {
+        return DefensiveEquipment;
+    }public void setDefensiveEquipment(boolean defensiveEquipment) {
+        DefensiveEquipment = defensiveEquipment;
     }
 
     @Override
     public String toString() {
         if (hasEnemy) return "Enemy";
-        if (hasPotion) return "+Potion";
+        if (DefensiveEquipment) return "Its a Defensive Equipment";
         return ".";
     }
 }

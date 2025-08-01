@@ -1,24 +1,25 @@
 package donjons_et_dragons.equipment;
 
-public class DefensiveEquipment {
+public abstract class DefensiveEquipment {
 
-    protected String potion;
-    protected int pvHealed;
+    protected String DefensiveEquipment;
+    protected int pvChange;
 
-    public DefensiveEquipment (int pvHealed,  String potion){
-        this.pvHealed = pvHealed;
-        this.potion = potion;
+
+    public DefensiveEquipment (int pvChange,  String DefensiveEquipment){
+        this.DefensiveEquipment = DefensiveEquipment;
+        this.pvChange = pvChange;
     }
 
-    public int getPvHealed() {
-        return pvHealed;
-    }public void setPvHealed(int pvHealed) {
-        this.pvHealed = pvHealed;
+    public String getDefensiveEquipment() {
+        return DefensiveEquipment;
+    }public void setDefensiveEquipment(String defensiveEquipment) {
+        DefensiveEquipment = defensiveEquipment;
     }
 
-    public String getPotion() {
-        return potion;
-    }public void setPotion(String potion) {
-        this.potion = potion;
+    public int getPvChange() {
+        return pvChange;
+    }public void setPvChange(int pvChange) {
+        this.pvChange = pvChange;
     }
 }

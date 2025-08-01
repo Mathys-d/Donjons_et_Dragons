@@ -38,7 +38,7 @@ public class Enemy {
 
     public static Enemy generateRandomEnemy() {
         Random rand = new Random();
-        int r = rand.nextInt(3);
+        int r = rand.nextInt(21);
         switch (r) {
             case 0:
                 return new HostileDragon();

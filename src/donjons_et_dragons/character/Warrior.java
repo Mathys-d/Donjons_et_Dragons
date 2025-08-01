@@ -13,9 +13,9 @@ public class Warrior extends Character {
 
     @Override
     public String toString() {
-        return"name: " + name +
-                ", health: " + health +
-                ", power: " + power +
-                ", type: " + type ;
+        return"name: " + name + "\n"+
+                "health: " + health + "\n"+
+                "str: " + str + "\n"+
+                "type: " + type ;
     }
 }

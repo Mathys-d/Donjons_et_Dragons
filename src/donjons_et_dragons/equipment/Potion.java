@@ -1,6 +1,7 @@
 package donjons_et_dragons.equipment;
 
 public class Potion extends DefensiveEquipment {
+
     public Potion(int pvHealed , String potion) {
         super(pvHealed,potion);
     }

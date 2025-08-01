@@ -25,7 +25,9 @@ public class LaunchGame {
         board = new Board(64);
 
 
-
+/**
+ * 1st stage
+ */
         String name = interfaceMenu.chooseName(clavier);
         String type = interfaceMenu.chooseClass(clavier);
         String weapon = interfaceMenu.chooseWeapon(clavier, type);
@@ -40,7 +42,9 @@ public class LaunchGame {
             interfaceCharacter = new Warrior(name);
         }
 
-
+/**
+ * 2nd stage
+ */
         while (true) {
             System.out.print("Command (start / info / quit) : ");
             String input = clavier.nextLine();
@@ -55,7 +59,12 @@ public class LaunchGame {
             } else if (input.equalsIgnoreCase("info")) {
                 interfaceMenu.displayCharacter(interfaceCharacter);
             } else if (input.equalsIgnoreCase("start")) {
-                start();
+                try {
+                    start();
+                } catch (OutOfBoardException e) {
+                    System.out.println(e.getMessage());
+                    System.out.println("You win");
+                }
             } else {
                 System.out.println("unknown Command.");
             }
@@ -64,25 +73,38 @@ public class LaunchGame {
     }
 
 
-    public void start() {
+    /**
+     * @throws OutOfBoardException
+     */
+    public void start ()throws OutOfBoardException{
         Cell[] boardGenerate = board.generateBoard();
         Scanner clavier = new Scanner(System.in);
         Cell finder;
-
-
+/**
+ * game
+ */
         while (true) {
             System.out.println("Press [Enter] to roll the dice.");
             String entree = clavier.nextLine();
 
             if (entree.isEmpty()) {
+
+
                 if (interfaceCharacter.getPosition()  == 0) {
                     System.out.println("You start at " + interfaceCharacter.getPosition());
                 }
                 steps = dice.rollDice();
                 interfaceCharacter.move(steps);
 
+
+                int pos = interfaceCharacter.getPosition();
+                if (pos < 0 || pos >= boardGenerate.length) {
+                    throw new OutOfBoardException("Position hors limit : " + pos);
+                }
+
                 System.out.println("You step " + steps + " case(s). You are now at : " +
                 interfaceCharacter.getPosition());
+
 
                 finder = boardGenerate [interfaceCharacter.getPosition()];
 
@@ -109,13 +131,12 @@ public class LaunchGame {
                 break;
             } else {
                 System.out.println("Wrong input.");
-            } if (interfaceCharacter.getPosition() >= 64) {
+            } if (interfaceCharacter.getPosition()  >= 64) {
                 System.out.println("Finish you won !!");
-                break;
             } if (interfaceCharacter.getHealth() <= 0) {
                 break;
             }
 
-        }
+        }//throw new OutOfBoardException
     }
 }

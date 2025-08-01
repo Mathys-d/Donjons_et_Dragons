@@ -14,9 +14,9 @@ public class Wizard extends Character {
     @Override
     public String toString() {
         return
-                "name: " + name + '\'' +
-                ", health: " + health +
-                ", power: " + power +
+                "name: " + name + "\n" +
+                ", health: " + health + "\n" +
+                ", power: " + power + "\n" +
                 ", type: " + type ;
     }
 }
