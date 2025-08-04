@@ -7,8 +7,8 @@ public class Wizard extends Character {
         super(name, "wizard", 0);
         Random rand = new Random();
 
-        this.health = rand.nextInt(8) + 8;
-        this.power = rand.nextInt(4) + 3;
+        this.health = rand.nextInt(10) ;
+        this.power = rand.nextInt(10);
     }
 
     @Override
