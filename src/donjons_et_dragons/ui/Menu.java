@@ -1,7 +1,6 @@
 package donjons_et_dragons.ui;
 
 import donjons_et_dragons.character.Character;
-
 import java.util.Scanner;
 
 public class Menu {

@@ -11,7 +11,6 @@ public class Board {
 
     public Board(int size) {
         cells = new Cell[size];
-
     }
 
     public Cell[] generateBoard(){

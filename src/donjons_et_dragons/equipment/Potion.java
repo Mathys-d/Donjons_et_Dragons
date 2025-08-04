@@ -12,7 +12,7 @@ public class Potion extends DefensiveEquipment {
 
 
 
-    private static int generalHealForCharacter() {
+    private static String generalHealForCharacter() {
         Random rand = new Random();
         int r = rand.nextInt(2)+1;
         switch (r) {
@@ -21,6 +21,12 @@ public class Potion extends DefensiveEquipment {
             case 2:
                 return 5 + "grande potion de vie";
         }
-        return 0;
+        return 0+"";
     }
+
+    @Override
+    public String toString() {
+        return getDefensiveEquipment() + " (+" + getPvChange() + " HP)";
+    }
+
 }

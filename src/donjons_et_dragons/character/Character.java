@@ -47,5 +47,8 @@ public class Character{
     public void move(int steps) {
         position = position + steps;
     }
+    public void defPosition() {
+        position = 0;
+    }
 }
 
