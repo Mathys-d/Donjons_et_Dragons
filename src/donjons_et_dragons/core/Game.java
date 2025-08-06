@@ -95,7 +95,7 @@ public class Game {
                 if (interfaceCharacter.getPosition() >=4) {
                     System.out.println("Finish you won !!");
                 }
-                if (interfaceCharacter.getHealth() <= 0) {
+                if (interfaceCharacter.getHp() <= 0) {
                     return;
                 }
 

@@ -3,6 +3,7 @@ package donjons_et_dragons.core;
 import donjons_et_dragons.board.Board;
 import donjons_et_dragons.board.Dice;
 import donjons_et_dragons.character.Character;
+import donjons_et_dragons.db.ConnexionDb;
 import donjons_et_dragons.ui.Menu;
 import java.util.Scanner;
 
@@ -23,7 +24,7 @@ public class Commands {
     public void commandMenu(Character player) {
         this.interfaceCharacter = player;
         while (true) {
-            System.out.print("Command (start / info / quit) : ");
+            System.out.print("Command (start / info / edit / quit) : ");
             String input = clavier.nextLine();
 
 
@@ -48,6 +49,10 @@ public class Commands {
                     System.out.println("You win");
                     interfaceCharacter.defPosition();
                 }
+            } else if (input.equalsIgnoreCase("edit")) {
+                System.out.println("change your name: ");
+                String newName = clavier.nextLine();
+                ConnexionDb.editHero(newName);
             } else {
                 System.out.println("unknown Command.");
             }

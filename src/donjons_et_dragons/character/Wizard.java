@@ -3,20 +3,22 @@ package donjons_et_dragons.character;
 import java.util.Random;
 
 public class Wizard extends Character {
-    public Wizard(String name) {
-        super(name, "wizard", 0);
+
+    public Wizard(String name, String weapon) {
+        super(name, "wizard", 0, weapon);
         Random rand = new Random();
 
-        this.health = rand.nextInt(10) ;
-        this.power = rand.nextInt(10);
+        this.hp = 5 + rand.nextInt(6);
+        this.str = 2 + rand.nextInt(9);
     }
 
     @Override
     public String toString() {
         return
-                "name: " + name + "\n" +
-                ", health: " + health + "\n" +
-                ", power: " + power + "\n" +
-                ", type: " + type ;
+                "name:'" + name + "\n" +
+                "hp:" + hp +
+                "str:" + str +
+                "offensive:" + offensiveEquipment + "\n" +
+                "defensive'" + defensiveEquipment + "\n";
     }
 }
