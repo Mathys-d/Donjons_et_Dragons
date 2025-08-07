@@ -3,9 +3,11 @@ package donjons_et_dragons.core;
 import donjons_et_dragons.board.Board;
 import donjons_et_dragons.board.Dice;
 import donjons_et_dragons.character.Character;
-import donjons_et_dragons.db.ConnexionDb;
+import donjons_et_dragons.db.MainDbConnexion;
+import donjons_et_dragons.db.queryDb.editNameDbConnexion;
 import donjons_et_dragons.ui.Menu;
 import java.util.Scanner;
+import donjons_et_dragons.character.ChoosCharacter;
 
 public class Commands {
     public Character interfaceCharacter;
@@ -14,11 +16,12 @@ public class Commands {
     public Dice dice = new Dice();
     Scanner clavier = new Scanner(System.in);
     Game game = new Game();
-
-
+    MainDbConnexion connexion = new MainDbConnexion();
     Menu interfaceMenu = new Menu();
-
-
+    ChoosCharacter chooseCharacter =  new ChoosCharacter(interfaceMenu);
+    protected Character player;
+    Scanner scanner = new Scanner(System.in);
+    editNameDbConnexion editName = new editNameDbConnexion();
 
 
     public void commandMenu(Character player) {
@@ -50,9 +53,16 @@ public class Commands {
                     interfaceCharacter.defPosition();
                 }
             } else if (input.equalsIgnoreCase("edit")) {
-                System.out.println("change your name: ");
+                System.out.print("which hero would you like to edit: ? ");
+                String changingName = scanner.nextLine().trim();
+                System.out.print("What would you like new name: ? ");
                 String newName = clavier.nextLine();
-                ConnexionDb.editHero(newName);
+                try {
+                    editNameDbConnexion.editHero(changingName, newName);
+                    player.setName(newName);
+                }catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             } else {
                 System.out.println("unknown Command.");
             }

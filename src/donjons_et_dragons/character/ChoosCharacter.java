@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class ChoosCharacter {
     protected final Scanner clavier = new Scanner(System.in);
     protected final Menu interfaceMenu;
-    //private Character selectedCharacter;
 
     public ChoosCharacter(Menu interfaceMenu) {
         this.interfaceMenu = interfaceMenu;
@@ -25,7 +24,8 @@ public class ChoosCharacter {
             return new Warrior(name, weapon);
         } else {
             System.out.println("Invalid class. Default character: Warrior.");
-            return new Warrior(name, weapon);
+            return new Warrior(name, "sword");
         }
     }
+
 }

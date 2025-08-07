@@ -15,10 +15,11 @@ public class Wizard extends Character {
     @Override
     public String toString() {
         return
-                "name:'" + name + "\n" +
-                "hp:" + hp +
-                "str:" + str +
-                "offensive:" + offensiveEquipment + "\n" +
-                "defensive'" + defensiveEquipment + "\n";
+                "id: "+ id + "\n" +
+                "name:" + name + "\n" +
+                "type: " + type +"\n" +
+                "hp:" + hp +"\n" +
+                "str:" + str +"\n" +
+                "offensive:" + offensiveEquipment + "\n";
     }
 }
