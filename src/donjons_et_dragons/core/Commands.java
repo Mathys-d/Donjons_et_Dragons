@@ -6,6 +6,8 @@ import donjons_et_dragons.character.Character;
 import donjons_et_dragons.db.MainDbConnexion;
 import donjons_et_dragons.db.queryDb.editNameDbConnexion;
 import donjons_et_dragons.ui.Menu;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 import donjons_et_dragons.character.ChoosCharacter;
 
@@ -51,6 +53,8 @@ public class Commands {
                     System.out.println(e.getMessage());
                     System.out.println("You win");
                     interfaceCharacter.defPosition();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
                 }
             } else if (input.equalsIgnoreCase("edit")) {
                 System.out.print("which hero would you like to edit: ? ");

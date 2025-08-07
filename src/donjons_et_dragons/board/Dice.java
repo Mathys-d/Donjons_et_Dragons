@@ -5,6 +5,8 @@ import java.util.Random;
 public class Dice {
     private int diceNumber;
     private Random rand = new Random();
+    public int actionDiceNumber = 0;
+
 
     public Dice() {
     }
@@ -17,4 +19,11 @@ public class Dice {
     public int getDiceNumber() {
         return this.diceNumber;
     }
+
+    public void actionDice() {
+        this.actionDiceNumber = rand.nextInt(20) + 1;
+    }
+
+
 }
+
