@@ -13,6 +13,8 @@ import donjons_et_dragons.ui.Menu;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import static donjons_et_dragons.db.queryDb.editHpChangeDbConnexion.changingHp;
+
 
 public class Game {
 
@@ -23,13 +25,10 @@ public class Game {
         public Dice dice = new Dice();
         Scanner clavier = new Scanner(System.in);
         Spawner spawner = new Spawner();
-        Game game = new Game();
         Menu interfaceMenu = new Menu();
         int res;
         int atk;
         int damage;
-        Main theMain = new Main();
-
 
 
         public void start() throws OutOfBoardException, SQLException {
@@ -42,6 +41,7 @@ public class Game {
              */
             String fighting;
             String entree;
+
             while (true) {
                 System.out.println("Press [Enter] to roll the dice.");
                 entree = clavier.nextLine();
@@ -76,36 +76,43 @@ public class Game {
                                     randomEnemy.getEnemyHealth() + " HP and " + randomEnemy.getEnemyStr() + " STR!");
                             System.out.println("Do you want to fight ? (yes/no)");
                             String input = clavier.nextLine();
-
                             if (input.equalsIgnoreCase("yes")) {
                                 System.out.println("You want to fight it, press [ENTER] to roll the dice for attack");
                                 fighting = clavier.nextLine();
+
                                 if (fighting.isEmpty()){
                                     dice.actionDice();
-                                     res = dice.actionDiceNumber;
+                                    res = dice.actionDiceNumber;
+                                    System.out.println("you made " + res );
                                     if (res >= 10){
                                         atk = interfaceCharacter.getStr();
-                                        randomEnemy.setEnemyHealth(atk);
+                                        damage = randomEnemy.getEnemyHealth() - atk ;
+                                        randomEnemy.setEnemyHealth(damage);
+                                        System.out.println("your attack made " + atk );
+                                        System.out.println("enemy have " + randomEnemy.getEnemyHealth()+ " hp now" );
+
                                         if (randomEnemy.getEnemyHealth() <= 0) {
                                             EnemyCpt = 0;
-                                            System.out.println("you win the fight against "+ randomEnemy.getEnemyName() + "you can continue the adventure");
+                                            System.out.println("you win the fight against "+ randomEnemy.getEnemyName() + " you can continue the adventure");
                                         }
                                     }else{
                                          damage = interfaceCharacter.getStr() - randomEnemy.getEnemyStr();
-                                         if (damage <= 0) {
-                                             System.out.println("your dead its the end !");
-                                             theMain.main();
-                                         }
-                                    }
+                                        interfaceCharacter.setHp(interfaceCharacter.getHp() - damage);
+                                        System.out.println("you take "+ damage +" damage." );
 
+                                        if (interfaceCharacter.getHp() <= 0) {
+                                            System.out.println("You are dead. Game over.");
+                                            break;
+                                        }
+                                    }
                                 }
                             }
-
-
                             else if (input.equalsIgnoreCase("no")) {
                                 System.out.println("You want dont want to fight it, press [ENTER] for escape and roll the dice");
                                 dice.actionDice();
                                 res = dice.actionDiceNumber;
+                                System.out.println("you made " + res );
+
                                 if (res >= 10){
                                     EnemyCpt = 0;
                                 }
@@ -142,6 +149,7 @@ public class Game {
                 if (interfaceCharacter.getHp() <= 0) {
                     return;
                 }
+                changingHp(interfaceCharacter.getName(),interfaceCharacter.getStr());
 
             }
 
