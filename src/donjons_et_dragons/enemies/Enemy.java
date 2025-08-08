@@ -38,15 +38,12 @@ public class Enemy {
 
     public static Enemy generateRandomEnemy() {
         Random rand = new Random();
-        int r = rand.nextInt(21);
-        switch (r) {
-            case 0:
-                return new HostileDragon();
-            case 1:
-                return new HostileSorcerer();
-            default:
-                return new HostileGobelin();
-        }
+        int r = rand.nextInt(5);
+        return switch (r) {
+            case 0 -> new HostileDragon();
+            case 1, 2 -> new HostileSorcerer();
+            default -> new HostileGobelin();
+        };
     }
 
 
