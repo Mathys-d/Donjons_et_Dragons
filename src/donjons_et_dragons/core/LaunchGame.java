@@ -1,6 +1,5 @@
 package donjons_et_dragons.core;
 
-import donjons_et_dragons.board.Board;
 import donjons_et_dragons.character.Character;
 import donjons_et_dragons.character.ChoosCharacter;
 import donjons_et_dragons.db.MainDbConnexion;
@@ -15,7 +14,6 @@ public class LaunchGame {
     Menu interfaceMenu = new Menu();
     ChoosCharacter chooseCharacter =  new ChoosCharacter(interfaceMenu);
     Commands commands = new Commands();
-    Board board = new Board(4);
     protected Character player;
     MainDbConnexion connexion = new MainDbConnexion();
     insertHeroDbConnexion insertHeroDb = new insertHeroDbConnexion();

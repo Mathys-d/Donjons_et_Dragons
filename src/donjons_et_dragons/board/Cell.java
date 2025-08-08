@@ -5,11 +5,16 @@ public class Cell {
     protected boolean hasEnemy;
     protected boolean hasPotion;
     protected boolean hasShield;
+    protected boolean hasWeapon;
+    protected boolean hasSpell;
 
-    public Cell(boolean hasEnemy, boolean hasPotion, boolean hasShield) {
+
+    public Cell(boolean hasEnemy, boolean hasPotion, boolean hasShield, boolean hasWeapon, boolean hasSpell) {
         this.hasEnemy = hasEnemy;
         this.hasPotion = hasPotion;
         this.hasShield = hasShield;
+        this.hasWeapon = hasWeapon;
+        this.hasSpell = hasSpell;
     }
 
     public boolean isHasEnemy() {
@@ -30,11 +35,29 @@ public class Cell {
         this.hasPotion = hasPotion;
     }
 
+    public boolean isHasWeapon() {
+        return hasWeapon;
+    }public void setHasWeapon(boolean hasWeapon) {
+        this.hasWeapon = hasWeapon;
+    }
+
+    public boolean isHasSpell() {
+        return hasSpell;
+    }public void setHasSpell(boolean hasSpell) {
+        this.hasSpell = hasSpell;
+    }
+
     @Override
     public String toString() {
         if (hasEnemy) return "Enemy";
         if (hasPotion) return "+Potion";
         if (hasShield) return "+Shield";
+        if (hasWeapon) return "+Weapon";
+        if (hasSpell) return "+Spell";
+
         return ".";
+    }
+
+    public void interact(Character character) {
     }
 }

@@ -6,7 +6,6 @@ import java.util.Random;
 
 public class Board {
     protected Cell[] cells;
-    protected int newCase = 0;
     private Random rand = new Random();
 
     public Board(int size) {
@@ -15,15 +14,19 @@ public class Board {
 
     public Cell[] generateBoard(){
         for (int i = 0; i < cells.length; i++) {
-            int r = rand.nextInt(4) +1;
+            int r = rand.nextInt(11) +1;
             if (r == 1) {
-                cells[i] = new Cell(true, false,false);
+                cells[i] = new Cell(true, false,false,false,false);
             } else if (r == 2) {
-                cells[i] = new Cell(false, true,false);
+                cells[i] = new Cell(false, true,false,false,false);
             } else if (r == 3) {
-                cells[i] = new Cell(false, false,true);
+                cells[i] = new Cell(false, false,true,false,false);
+            }else if (r == 4) {
+                cells[i] = new Cell(false, false,false,true,false);
+            }else if (r == 5) {
+                cells[i] = new Cell(false, false,false,false,true);
             } else {
-                cells[i] = new Cell(false, false,false);
+                cells[i] = new Cell(false, false,false,false,false);
             }
         }
         return cells;

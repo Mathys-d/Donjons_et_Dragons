@@ -5,6 +5,7 @@ import donjons_et_dragons.board.Cell;
 import donjons_et_dragons.board.Dice;
 import donjons_et_dragons.character.Character;
 import donjons_et_dragons.enemies.Enemy;
+import donjons_et_dragons.equipment.OffensiveEquipment;
 import donjons_et_dragons.equipment.consumable.Potion;
 import donjons_et_dragons.equipment.defensive.Shield;
 import donjons_et_dragons.ui.Menu;
@@ -47,8 +48,9 @@ public class Game {
                     if (interfaceCharacter.getPosition() == 0) {
                         System.out.println("You start at " + interfaceCharacter.getPosition());
                     }
-                    //steps = dice.rollDice();  default
-                    steps = 1;
+
+                    steps = dice.rollDice();  //default
+                    //steps = 1;
                     interfaceCharacter.move(steps);
                     int pos = interfaceCharacter.getPosition();
 
@@ -127,6 +129,21 @@ public class Game {
                         interfaceCharacter.setHp(interfaceCharacter.getHp() + randomPotion.getPvChange());
                         changingHp(interfaceCharacter.getName(),interfaceCharacter.getHp());
                         System.out.println("You found a " + randomPotion + " !");
+                    }if (finder.isHasWeapon()) {
+                        OffensiveEquipment randomWeapon = spawner.generateWeaponForCharacter();
+                        if() {
+                            interfaceCharacter.setStr(interfaceCharacter.getStr() = randomWeapon);
+                            changingHp(interfaceCharacter.getName(), interfaceCharacter.getHp());
+                            System.out.println("You found a " + randomWeapon + " !");
+                        }
+                    }
+
+
+                    if (finder.isHasPotion()) {
+                        Potion randomPotion = spawner.generatePotionForCharacter();
+                        interfaceCharacter.setHp(interfaceCharacter.getHp() + randomPotion.getPvChange());
+                        changingHp(interfaceCharacter.getName(),interfaceCharacter.getHp());
+                        System.out.println("You found a " + randomPotion + " !");
                     }
 
                 }  else if (entree.equalsIgnoreCase("quit")) {
@@ -135,17 +152,9 @@ public class Game {
                 } else {
                     System.out.println("Wrong input.");
                 }
-
-
-                /* if (interfaceCharacter.getPosition() >= 64) {
-                 System.out.println("Finish you won !!");
-                 }*/
-                if (interfaceCharacter.getPosition() >=4) {
+                if (interfaceCharacter.getPosition() >= 64) {
                     System.out.println("Finish you won !!");
                 }
-
-
-
                 if (interfaceCharacter.getHp() <= 0) {
                     return;
                 }

@@ -46,8 +46,7 @@ public class Commands {
             } else if (input.equalsIgnoreCase("start")) {
                 try {
                     game.interfaceCharacter = interfaceCharacter;
-                    game.board = new Board(4);
-
+                    game.board = new Board(64);
                     game.start();
                 } catch (OutOfBoardException e) {
                     System.out.println(e.getMessage());
