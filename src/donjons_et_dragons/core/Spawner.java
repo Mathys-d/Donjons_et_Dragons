@@ -36,4 +36,12 @@ public class Spawner {
         }
         return new Sword("Sword",6);
     }
+    public OffensiveEquipment generateSpellForCharacter() {
+        Random rand = new Random();
+        int r = rand.nextInt(2) + 1;
+        if (r == 1) {
+            return new Masse("Fire ball",7);
+        }
+        return new Sword("lightning",6);
+    }
 }

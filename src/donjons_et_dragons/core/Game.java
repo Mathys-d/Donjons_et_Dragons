@@ -9,11 +9,10 @@ import donjons_et_dragons.equipment.OffensiveEquipment;
 import donjons_et_dragons.equipment.consumable.Potion;
 import donjons_et_dragons.equipment.defensive.Shield;
 import donjons_et_dragons.ui.Menu;
-
 import java.sql.SQLException;
 import java.util.Scanner;
-
 import static donjons_et_dragons.db.queryDb.editHpChangeDbConnexion.changingHp;
+import static donjons_et_dragons.db.queryDb.editStr.changingWeapon;
 
 
 public class Game {
@@ -116,7 +115,8 @@ public class Game {
                             }
                         }
                     }
-
+                    // mes cases spécailes
+                    //case shield qui donne un nb de vie en +
                     if (finder.isHasShield()) {
                         Shield randomShield = spawner.generateShieldForCharacter();
                         interfaceCharacter.setHp(interfaceCharacter.getHp() + randomShield.getPvChange());
@@ -124,28 +124,58 @@ public class Game {
                         changingHp(interfaceCharacter.getName(),interfaceCharacter.getHp());
                         System.out.println("You found a " + randomShield + " !");
                     }
+                    //case Potion qui donne un nb de vie en +
+
                     if (finder.isHasPotion()) {
                         Potion randomPotion = spawner.generatePotionForCharacter();
                         interfaceCharacter.setHp(interfaceCharacter.getHp() + randomPotion.getPvChange());
                         changingHp(interfaceCharacter.getName(),interfaceCharacter.getHp());
                         System.out.println("You found a " + randomPotion + " !");
-                    }if (finder.isHasWeapon()) {
-                        OffensiveEquipment randomWeapon = spawner.generateWeaponForCharacter();
-                        if() {
-                            interfaceCharacter.setStr(interfaceCharacter.getStr() = randomWeapon);
-                            changingHp(interfaceCharacter.getName(), interfaceCharacter.getHp());
-                            System.out.println("You found a " + randomWeapon + " !");
+                    }
+
+                    //mettre la condition si il est de la class warrior ou wizard
+
+                    //case Weapon qui donne une arme aleatoire et permet de changer si on veut
+                    if (finder.isHasWeapon()) {
+                        if (interfaceCharacter.getType().equals("warrior")) {
+                            OffensiveEquipment randomWeapon = spawner.generateWeaponForCharacter();
+                            System.out.println("You found a " + randomWeapon + " !" + "do you want to change your " + interfaceCharacter.getOffensiveEquipment() + " with " + interfaceCharacter.getStr() + " damage." + "(YES/NO)");
+                            String input = clavier.nextLine();
+                            if (input.equalsIgnoreCase("yes")) {
+                                interfaceCharacter.setStr(randomWeapon.getDamage());
+                                interfaceCharacter.setOffensiveEquipment(randomWeapon.getOffensiveEquipmentName());
+                                changingWeapon(interfaceCharacter.getName(), interfaceCharacter.getStr(), interfaceCharacter.getOffensiveEquipment());
+                                System.out.println("You replace your weapon with a " + randomWeapon + " !");
+                            }
+                            if (input.equalsIgnoreCase("no")) {
+                                System.out.println("you can continue the adventure.");
+                            } else {
+                                System.out.println("unknown Command.");
+                            }
                         }
+                        System.out.println("vous etes sur une case reservé a la classe warrior.");
                     }
+                    //case Spell qui donne une arme aleatoire et permet de changer si on veut
+                    if (finder.isHasSpell()) {
+                        if (interfaceCharacter.getType().equals("wizard")) {
+                            OffensiveEquipment randomSpell = spawner.generateSpellForCharacter();
+                            System.out.println("You found a " + randomSpell + " !" + "do you want to change your " + interfaceCharacter.getOffensiveEquipment() + " with " + interfaceCharacter.getStr() + " damage." + "(yes/no)");
+                            String input = clavier.nextLine();
+                            if (input.equalsIgnoreCase("yes")) {
+                                interfaceCharacter.setStr(randomSpell.getDamage());
+                                interfaceCharacter.setOffensiveEquipment(randomSpell.getOffensiveEquipmentName());
+                                changingWeapon(interfaceCharacter.getName(), interfaceCharacter.getStr(), interfaceCharacter.getOffensiveEquipment());
+                                System.out.println("You replace your spell with a " + randomSpell + " !");
+                            }
+                            if (input.equalsIgnoreCase("no")) {
+                                System.out.println("you can continue the adventure.");
+                            } else {
+                                System.out.println("unknown Command.");
+                            }
+                        }
+                        System.out.println("vous etes sur une case reservé a la classe wizard.");
 
-
-                    if (finder.isHasPotion()) {
-                        Potion randomPotion = spawner.generatePotionForCharacter();
-                        interfaceCharacter.setHp(interfaceCharacter.getHp() + randomPotion.getPvChange());
-                        changingHp(interfaceCharacter.getName(),interfaceCharacter.getHp());
-                        System.out.println("You found a " + randomPotion + " !");
                     }
-
                 }  else if (entree.equalsIgnoreCase("quit")) {
                     System.out.println("Back to menu...");
                     return;
@@ -160,7 +190,6 @@ public class Game {
                 }
                 changingHp(interfaceCharacter.getName(),interfaceCharacter.getHp());
             }
-
         }
         public void enemyChargeAtk(){
             interfaceCharacter.setHp(interfaceCharacter.getHp() - damage);
@@ -169,8 +198,6 @@ public class Game {
             if (interfaceCharacter.getHp() <= 0) {
                 System.out.println("You are dead. Game over.");
                 System.exit(0);
-
             }
         }
-
 }

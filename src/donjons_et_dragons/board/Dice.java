@@ -10,7 +10,7 @@ public class Dice {
 
     public Dice() {
     }
-
+// lance le dée
     public int rollDice() {
         this.diceNumber = rand.nextInt(6) + 1;
         return this.diceNumber;

@@ -22,13 +22,4 @@ public class MainDbConnexion {
         }
 
     }
-
-
-
-
-
-
-
-
-
 }
