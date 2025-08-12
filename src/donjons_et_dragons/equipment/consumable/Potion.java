@@ -6,13 +6,9 @@ import java.util.Random;
 
 public class Potion extends DefensiveEquipment {
 
-
     public Potion(int pvHealed) {
         super(pvHealed);
     }
-
-
-
 
     private static int generalHealForCharacter() {
         Random rand = new Random();

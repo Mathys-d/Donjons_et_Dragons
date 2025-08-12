@@ -1,8 +1,8 @@
 package donjons_et_dragons.equipment;
 
 public abstract class DefensiveEquipment {
-    protected int pvChange;
 
+    protected int pvChange;
 
     public DefensiveEquipment (int pvChange){
         this.pvChange = pvChange;

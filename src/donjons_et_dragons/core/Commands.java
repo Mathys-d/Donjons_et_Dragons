@@ -12,10 +12,10 @@ import java.util.Scanner;
 import donjons_et_dragons.character.ChoosCharacter;
 
 public class Commands {
-    public Character interfaceCharacter;
-    public Board board;
-    public int steps = 0;
-    public Dice dice = new Dice();
+    protected Character interfaceCharacter;
+    protected Board board;
+    protected int steps = 0;
+    protected Dice dice = new Dice();
     Scanner clavier = new Scanner(System.in);
     Game game = new Game();
     MainDbConnexion connexion = new MainDbConnexion();
@@ -45,7 +45,7 @@ public class Commands {
                 interfaceMenu.displayCharacter(interfaceCharacter);
             } else if (input.equalsIgnoreCase("start")) {
                 try {
-                    game.interfaceCharacter = interfaceCharacter;
+                    game.player = interfaceCharacter;
                     game.board = new Board(64);
                     game.start();
                 } catch (OutOfBoardException e) {
@@ -56,17 +56,22 @@ public class Commands {
                     throw new RuntimeException(e);
                 }
             } else if (input.equalsIgnoreCase("edit")) {
-                System.out.print("which hero would you like to edit: ? ");
-                String changingName = scanner.nextLine().trim();
-                System.out.print("What would you like new name: ? ");
-                String newName = clavier.nextLine();
-                try {
-                    editNameDbConnexion.editHero(changingName, newName);
-                    player.setName(newName);
-                }catch (Exception e) {
-                    System.out.println(e.getMessage());
+
+                String entree = clavier.nextLine();
+                if (entree.isEmpty()) {System.out.println("entree is empty.");
+                }else{
+                    System.out.print("which hero would you like to edit: ? ");
+                    String changingName = scanner.nextLine().trim();
+                    System.out.print("What would you like new name: ? ");
+                    String newName = clavier.nextLine();
+                    try {
+                        editNameDbConnexion.editHero(changingName, newName);
+                        player.setName(newName);
+                    }catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
-            } else {
+            }else {
                 System.out.println("unknown Command.");
             }
         }

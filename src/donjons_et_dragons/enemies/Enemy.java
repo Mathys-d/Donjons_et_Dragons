@@ -8,7 +8,6 @@ public class Enemy {
     protected String enemyName;
     protected int enemyHealth;
     protected int enemyStr;
-
     private Random rand = new Random();
 
     public Enemy(String enemyName, int enemyHealth, int enemyStr) {
@@ -45,9 +44,6 @@ public class Enemy {
             default -> new HostileGobelin();
         };
     }
-
-
-
 
     @Override
     public String toString() {

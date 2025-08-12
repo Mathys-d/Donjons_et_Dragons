@@ -7,11 +7,9 @@ import java.util.Random;
 
 public class Shield extends DefensiveEquipment {
 
-
     public Shield(int pvDealt) {
         super(pvDealt);
     }
-
 
     private static int generalHealForCharacter() {
         Random rand = new Random();
