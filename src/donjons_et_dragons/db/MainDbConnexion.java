@@ -20,6 +20,5 @@ public class MainDbConnexion {
         } else {
             heroes.forEach(System.out::println);
         }
-
     }
 }
