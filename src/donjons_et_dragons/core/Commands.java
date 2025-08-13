@@ -43,7 +43,7 @@ public class Commands {
                 }
             } if (input.equalsIgnoreCase("info")) {
                 interfaceMenu.displayCharacter(interfaceCharacter);
-            } else if (input.equalsIgnoreCase("start")) {
+            } else if (input.trim().equalsIgnoreCase("start")) {
                 try {
                     game.player = interfaceCharacter;
                     game.board = new Board(64);

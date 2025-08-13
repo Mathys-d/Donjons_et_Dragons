@@ -68,7 +68,7 @@ public class Game {
                                 randomEnemy.getEnemyHealth() + " HP and " + randomEnemy.getEnemyStr() + " STR!");
                         System.out.println("Do you want to fight ? (yes/no)");
                         String input = clavier.nextLine();
-                        if (input.equalsIgnoreCase("yes")) {
+                        if (input.trim().equalsIgnoreCase("yes")) {
                             System.out.println("press [ENTER] to roll the dice for attack");
                             fighting = clavier.nextLine();
 
@@ -105,7 +105,7 @@ public class Game {
                                 }
                             }
                         }
-                        else if (input.equalsIgnoreCase("no")) {
+                        else if (input.trim().equalsIgnoreCase("no")) {
                             System.out.println("press [ENTER] to roll the dice and try to escape");
                             dice.actionDice();
                             res = dice.getActionDiceNumber();
@@ -161,15 +161,15 @@ public class Game {
                         OffensiveEquipment randomWeapon = spawner.generateWeaponForCharacter();
                         System.out.println("You found a " + randomWeapon.getOffensiveEquipmentName() + " with "+randomWeapon.getDamage()+ " str, " + "do you want to change your " + player.getOffensiveEquipment() + " with " + player.getStr() + " damage." + "(yes/no)");
                         String input = clavier.nextLine();
-                        if (input.equalsIgnoreCase("yes")) {
+                        if (input.trim().equalsIgnoreCase("yes")) {
                             player.setStr(randomWeapon.getDamage());
                             player.setOffensiveEquipment(randomWeapon.getOffensiveEquipmentName());
                             changingWeapon(player.getName(), player.getStr(), player.getOffensiveEquipment());
                             System.out.println("You replace your weapon with a " + randomWeapon.getOffensiveEquipmentName());
                         }
-                        if (input.equalsIgnoreCase("no")) {
+                        if (input.trim().equalsIgnoreCase("no")) {
                             System.out.println("you can continue the adventure.");
-                        } else if (!input.equalsIgnoreCase("yes") && !input.equalsIgnoreCase("no")) {
+                        } else if (!input.trim().equalsIgnoreCase("yes") && !input.trim().equalsIgnoreCase("no")) {
                             System.out.println("unknown Command.");
                         }
                     }else if (player.getType().equals("wizard")) {
@@ -183,15 +183,15 @@ public class Game {
                         System.out.println("You found a " + randomSpell.getOffensiveEquipmentName() + " with "+randomSpell.getDamage()+ " str, " + "do you want to change your " + player.getOffensiveEquipment() + " with " + player.getStr() + " damage." + "(yes/no)");
 
                         String input = clavier.nextLine();
-                        if (input.equalsIgnoreCase("yes")) {
+                        if (input.trim().equalsIgnoreCase("yes")) {
                             player.setStr(randomSpell.getDamage());
                             player.setOffensiveEquipment(randomSpell.getOffensiveEquipmentName());
                             changingWeapon(player.getName(), player.getStr(), player.getOffensiveEquipment());
                             System.out.println("You replace your spell with a " + randomSpell.getOffensiveEquipmentName());
                         }
-                        if (input.equalsIgnoreCase("no")) {
+                        if (input.trim().equalsIgnoreCase("no")) {
                             System.out.println("you can continue the adventure.");
-                        } else if (!input.equalsIgnoreCase("yes") && !input.equalsIgnoreCase("no")) {
+                        } else if (!input.trim().equalsIgnoreCase("yes") && !input.trim().equalsIgnoreCase("no")) {
                             System.out.println("unknown Command.");
                         }
                     } else if (player.getType().equals("warrior")) {
