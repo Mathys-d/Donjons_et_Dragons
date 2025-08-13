@@ -50,7 +50,7 @@ public class Game {
                 int pos = player.getPosition();
 
                 if (pos < 0 || pos >= boardGenerate.length) {
-                    throw new OutOfBoardException("Position hors limit : " + pos);
+                    throw new OutOfBoardException("you are now at the finish cell: " + pos);
                 }
 
                 System.out.println("You step " + steps + " case(s). You are now at : " +
@@ -69,7 +69,7 @@ public class Game {
                         System.out.println("Do you want to fight ? (yes/no)");
                         String input = clavier.nextLine();
                         if (input.equalsIgnoreCase("yes")) {
-                            System.out.println("You want to fight it, press [ENTER] to roll the dice for attack");
+                            System.out.println("press [ENTER] to roll the dice for attack");
                             fighting = clavier.nextLine();
 
                             if (fighting.isEmpty()) {
@@ -81,26 +81,32 @@ public class Game {
                                     damage = randomEnemy.getEnemyHealth() - atk;
                                     randomEnemy.setEnemyHealth(damage);
                                     System.out.println("your attack made " + atk);
-                                    System.out.println("enemy have " + randomEnemy.getEnemyHealth() + " hp now");
 
+                                    if (randomEnemy.getEnemyHealth() > 0) {
+                                        System.out.println("enemy have " + randomEnemy.getEnemyHealth() + " hp now");
+                                    }
                                     if (randomEnemy.getEnemyHealth() <= 0) {
                                         EnemyCpt = 0;
-                                        System.out.println("you win the fight against " + randomEnemy.getEnemyName() + " you can continue the adventure");
+                                        System.out.println(randomEnemy.getEnemyName()+ " is dead");
+                                        System.out.println("you can continue the adventure");
                                     }
                                 } else if (res == 1) {
                                     System.out.println("critical fail, you made 1, you die.");
                                     player.setHp(0);
+                                    changingHp(player.getName(), player.getHp());
+                                    System.exit(0);
                                 } else if (res == 20) {
                                     System.out.println("epic roll you made 20, you one shot the enemy.");
-                                    randomEnemy.setEnemyHealth(50);
+                                    randomEnemy.setEnemyHealth(0);
+                                    EnemyCpt = 0;
                                 }else{
-                                    damage = player.getStr() - randomEnemy.getEnemyStr();
+                                    damage =randomEnemy.getEnemyStr();
                                     enemyChargeAtk(damage);
                                 }
                             }
                         }
                         else if (input.equalsIgnoreCase("no")) {
-                            System.out.println("You dont want to fight it, press [ENTER] to roll the dice and try to escape");
+                            System.out.println("press [ENTER] to roll the dice and try to escape");
                             dice.actionDice();
                             res = dice.getActionDiceNumber();
                             System.out.println("you made " + res);
@@ -111,11 +117,16 @@ public class Game {
                             } else if (res == 1) {
                                 System.out.println("critical fail, you start running you fell and you die.");
                                 player.setHp(0);
+                                changingHp(player.getName(), player.getHp());
+                                System.exit(0);
                             }else if (res == 20) {
                                 System.out.println("epic roll you made 20, the enemy die instantly, no need to run 'relax'.");
                                 randomEnemy.setEnemyHealth(0);
+                                EnemyCpt = 0;
+
                             }else{
-                                damage = player.getStr() - randomEnemy.getEnemyStr();
+                                System.out.println("you fail to escape");
+                                damage =randomEnemy.getEnemyStr();
                                 enemyChargeAtk(damage);
                             }
                         } else {
@@ -130,7 +141,8 @@ public class Game {
                     player.setHp(player.getHp() + randomShield.getPvChange());
 
                     changingHp(player.getName(), player.getHp());
-                    System.out.println("You found a " + randomShield + " !");
+                    System.out.println("You found a " + randomShield + "you have now " + player.getHp()+" hp.");
+
                 }
                 //case Potion qui donne un nb de vie en +
 
@@ -138,7 +150,7 @@ public class Game {
                     Potion randomPotion = spawner.generatePotionForCharacter();
                     player.setHp(player.getHp() + randomPotion.getPvChange());
                     changingHp(player.getName(), player.getHp());
-                    System.out.println("You found a " + randomPotion + " !");
+                    System.out.println("You found a " + randomPotion + "you have now " + player.getHp()+" hp.");
                 }
 
                 //mettre la condition si il est de la class warrior ou wizard
@@ -147,42 +159,44 @@ public class Game {
                 if (finder.isHasWeapon()) {
                     if (player.getType().equals("warrior")) {
                         OffensiveEquipment randomWeapon = spawner.generateWeaponForCharacter();
-                        System.out.println("You found a " + randomWeapon.getOffensiveEquipmentName() + " !" + "do you want to change your " + player.getOffensiveEquipment() + " with " + player.getStr() + " damage." + "(YES/NO)");
+                        System.out.println("You found a " + randomWeapon.getOffensiveEquipmentName() + " with "+randomWeapon.getDamage()+ " str, " + "do you want to change your " + player.getOffensiveEquipment() + " with " + player.getStr() + " damage." + "(yes/no)");
                         String input = clavier.nextLine();
                         if (input.equalsIgnoreCase("yes")) {
                             player.setStr(randomWeapon.getDamage());
                             player.setOffensiveEquipment(randomWeapon.getOffensiveEquipmentName());
                             changingWeapon(player.getName(), player.getStr(), player.getOffensiveEquipment());
-                            System.out.println("You replace your weapon with a " + randomWeapon + " !");
+                            System.out.println("You replace your weapon with a " + randomWeapon.getOffensiveEquipmentName());
                         }
                         if (input.equalsIgnoreCase("no")) {
                             System.out.println("you can continue the adventure.");
-                        } else {
+                        } else if (!input.equalsIgnoreCase("yes") && !input.equalsIgnoreCase("no")) {
                             System.out.println("unknown Command.");
                         }
+                    }else if (player.getType().equals("wizard")) {
+                        System.out.println("you are on warrior cell.");
                     }
-                    System.out.println("vous etes sur une case reservé a la classe warrior.");
                 }
                 //case Spell qui donne une arme aleatoire et permet de changer si on veut
                 if (finder.isHasSpell()) {
                     if (player.getType().equals("wizard")) {
                         OffensiveEquipment randomSpell = spawner.generateSpellForCharacter();
-                        System.out.println("You found a " + randomSpell + " !" + "do you want to change your " + player.getOffensiveEquipment() + " with " + player.getStr() + " damage." + "(yes/no)");
+                        System.out.println("You found a " + randomSpell.getOffensiveEquipmentName() + " with "+randomSpell.getDamage()+ " str, " + "do you want to change your " + player.getOffensiveEquipment() + " with " + player.getStr() + " damage." + "(yes/no)");
+
                         String input = clavier.nextLine();
                         if (input.equalsIgnoreCase("yes")) {
                             player.setStr(randomSpell.getDamage());
                             player.setOffensiveEquipment(randomSpell.getOffensiveEquipmentName());
                             changingWeapon(player.getName(), player.getStr(), player.getOffensiveEquipment());
-                            System.out.println("You replace your spell with a " + randomSpell + " !");
+                            System.out.println("You replace your spell with a " + randomSpell.getOffensiveEquipmentName());
                         }
                         if (input.equalsIgnoreCase("no")) {
                             System.out.println("you can continue the adventure.");
-                        } else {
+                        } else if (!input.equalsIgnoreCase("yes") && !input.equalsIgnoreCase("no")) {
                             System.out.println("unknown Command.");
                         }
+                    } else if (player.getType().equals("warrior")) {
+                        System.out.println("you are on wizard cell.");
                     }
-                    System.out.println("vous etes sur une case reservé a la classe wizard.");
-
                 }
             }  else if (entree.equalsIgnoreCase("quit")) {
                 System.out.println("Back to menu...");
@@ -203,7 +217,10 @@ public class Game {
         player.setHp(player.getHp() - damage);
         System.out.println("you take "+ damage +" damage." );
         changingHp(player.getName(), player.getHp());
-        if (player.getHp() <= 0) {
+        if (player.getHp() > 0) {
+            System.out.println("you have now "+ player.getHp() + " hp.");
+        }else if (player.getHp() <= 0) {
+            System.out.println("You have 0 hp.");
             System.out.println("You are dead. Game over.");
             System.exit(0);
         }

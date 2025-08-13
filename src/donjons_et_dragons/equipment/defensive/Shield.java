@@ -23,6 +23,6 @@ public class Shield extends DefensiveEquipment {
 
     @Override
     public String toString() {
-        return "the shield give you a bonus of " + getPvChange() + " HP)";
+        return " shield and give you a bonus of " + getPvChange() + " hp, ";
     }
 }

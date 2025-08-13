@@ -56,21 +56,20 @@ public class Commands {
                     throw new RuntimeException(e);
                 }
             } else if (input.equalsIgnoreCase("edit")) {
-
-                String entree = clavier.nextLine();
-                if (entree.isEmpty()) {System.out.println("entree is empty.");
-                }else{
-                    System.out.print("which hero would you like to edit: ? ");
+                    System.out.print("which hero would you edit: ? ");
                     String changingName = scanner.nextLine().trim();
-                    System.out.print("What would you like new name: ? ");
-                    String newName = clavier.nextLine();
-                    try {
-                        editNameDbConnexion.editHero(changingName, newName);
-                        player.setName(newName);
-                    }catch (Exception e) {
-                        System.out.println(e.getMessage());
+                    if (changingName.isEmpty()) {
+                        System.out.println("entree is empty.");
+                    }else {
+                        System.out.print("write your new name: ? ");
+                        String newName = clavier.nextLine();
+                        try {
+                            editNameDbConnexion.editHero(changingName, newName);
+                            player.setName(newName);
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
                     }
-                }
             }else {
                 System.out.println("unknown Command.");
             }

@@ -22,7 +22,6 @@ public class Potion extends DefensiveEquipment {
 
     @Override
     public String toString() {
-        return  "the potion give you a bonus of " + getPvChange() + " HP";
+        return  " potion and give you a bonus of " + getPvChange() + " hp, ";
     }
-
 }
