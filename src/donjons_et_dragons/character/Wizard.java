@@ -2,15 +2,12 @@ package donjons_et_dragons.character;
 
 import java.util.Random;
 
-/**
- * Classe Wizard qui hérite de Character.
- */
 public class Wizard extends Character {
 
     /**
-     * Constructeur Wizard.
-     * @param name nom du personnage
-     * @param weapon sort offensif
+     * wizard etends de charactere et utilise
+     * @param name
+     * @param weapon
      */
     public Wizard(String name, String weapon) {
         super(name, "wizard", 0, weapon);
@@ -20,10 +17,6 @@ public class Wizard extends Character {
         this.str = 2 + rand.nextInt(9);
     }
 
-    /**
-     * Représentation textuelle du magicien.
-     * @return chaîne descriptive
-     */
     @Override
     public String toString() {
         return

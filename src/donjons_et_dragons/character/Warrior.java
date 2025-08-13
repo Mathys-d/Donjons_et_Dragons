@@ -2,15 +2,12 @@ package donjons_et_dragons.character;
 
 import java.util.Random;
 
-/**
- * Classe Warrior qui hérite de Character.
- */
 public class Warrior extends Character {
 
     /**
-     * Constructeur Warrior.
-     * @param name nom du personnage
-     * @param weapon arme offensive
+     * warrior etends de charactere et utilise
+     * @param name
+     * @param weapon
      */
     public Warrior(String name, String weapon) {
         super(name, "warrior",0, weapon);
@@ -20,10 +17,6 @@ public class Warrior extends Character {
         this.str = rand.nextInt(5) + 5;
     }
 
-    /**
-     * Représentation textuelle du guerrier.
-     * @return chaîne descriptive
-     */
     @Override
     public String toString() {
         return

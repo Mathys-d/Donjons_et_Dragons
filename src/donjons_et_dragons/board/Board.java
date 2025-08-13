@@ -3,25 +3,26 @@ package donjons_et_dragons.board;
 import donjons_et_dragons.ui.Menu;
 
 import java.util.Random;
-
 /**
- * Classe qui crée et initialise le tableau de jeu.
+ *class qui cree cree et initialise le tableau de jeu
  */
+
 public class Board {
     protected Cell[] cells;
     private Random rand = new Random();
 
+
     /**
-     * Constructeur.
-     * @param size taille du tableau
+     * @param size
+     * le tableau de jeu est répartie en cellules
      */
     public Board(int size) {
         cells = new Cell[size];
     }
 
+
     /**
-     * Génère cellule par cellule et ajoute seulement un élément dans une case.
-     * @return tableau de cellules
+     * genere cellulle par cellule et ajoute seulement un element dans une case
      */
     public Cell[] generateBoard(){
         for (int i = 0; i < cells.length; i++) {
@@ -42,4 +43,5 @@ public class Board {
         }
         return cells;
     }
+
 }

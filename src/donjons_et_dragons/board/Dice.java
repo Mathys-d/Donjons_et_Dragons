@@ -3,15 +3,16 @@ package donjons_et_dragons.board;
 import java.util.Random;
 
 /**
- * Classe pour initialiser et gérer les dés.
+ * class pour initialiser et donner les dée
  */
 public class Dice {
     private int diceNumber;
     private Random rand = new Random();
     private int actionDiceNumber;
 
+
     /**
-     * Constructeur du dé.
+     * constructor de déé
      */
     public Dice() {
         this.diceNumber = rand.nextInt(6) + 1;
@@ -19,55 +20,53 @@ public class Dice {
     }
 
     /**
-     * Retourne le nombre obtenu avec le dé à 6 faces.
-     * @return valeur du dé
+     * retourne les nombre donné par les dée
+     * @return
      */
     public int getDiceNumber() { return this.diceNumber; }
 
     /**
-     * Définit le nombre du dé.
-     * @param diceNumber valeur à définir
+     * actualise le nombre donné par les dée
+     * @param diceNumber
      */
     public void setDiceNumber(int diceNumber) { this.diceNumber = diceNumber; }
 
+
     /**
-     * Retourne l'objet Random.
-     * @return instance de Random
+     * retourne le nombre aleatoire
+     * @return
      */
     public Random getRand() {return rand; }
 
     /**
-     * Définit l'objet Random.
-     * @param rand instance de Random à définir
+     * actualise le nomre aleaiore
+     * @param rand
      */
     public void setRand(Random rand) {this.rand = rand; }
 
+
     /**
-     * Retourne le nombre du dé d'action (20 faces).
-     * @return valeur du dé d'action
+     * set le nomre
+     * et donne le nombre
+     * @return
      */
     public int getActionDiceNumber() {
         return actionDiceNumber;
-    }
-
-    /**
-     * Définit le nombre du dé d'action.
-     * @param actionDiceNumber valeur à définir
-     */
-    public void setActionDiceNumber(int actionDiceNumber) {
+    }public void setActionDiceNumber(int actionDiceNumber) {
         this.actionDiceNumber = actionDiceNumber;
     }
 
+
     /**
-     * Lance un dé d'action à 20 faces.
+     *  lance un dée de 20
      */
     public void actionDice() {
         this.actionDiceNumber = rand.nextInt(20) + 1;
     }
 
     /**
-     * Lance un dé à 6 faces et retourne la valeur.
-     * @return valeur du dé à 6 faces
+     * lance un dée de 6
+     * @return
      */
     public int sixdice() {
         this.diceNumber = rand.nextInt(6) + 1;

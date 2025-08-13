@@ -1,7 +1,7 @@
 package donjons_et_dragons.board;
 
 /**
- * Classe cellule.
+ * class cellule
  */
 public class Cell {
     protected boolean hasEnemy;
@@ -11,12 +11,12 @@ public class Cell {
     protected boolean hasSpell;
 
     /**
-     * Constructeur de la classe Cell.
-     * @param hasEnemy présence d’un ennemi
-     * @param hasPotion présence d’une potion
-     * @param hasShield présence d’un bouclier
-     * @param hasWeapon présence d’une arme
-     * @param hasSpell présence d’un sort
+     * constructeur de la class
+     * @param hasEnemy
+     * @param hasPotion
+     * @param hasShield
+     * @param hasWeapon
+     * @param hasSpell
      */
     public Cell(boolean hasEnemy, boolean hasPotion, boolean hasShield, boolean hasWeapon, boolean hasSpell) {
         this.hasEnemy = hasEnemy;
@@ -27,63 +27,59 @@ public class Cell {
     }
 
     /**
-     * Indique si la cellule contient un ennemi.
-     * @return true si oui, false sinon
+     * boolean de la cellule enemy
+     * @return
      */
     public boolean isHasEnemy() {
         return hasEnemy;
-    }
-    public void setHasEnemy(boolean hasEnemy) {
+    }public void setHasEnemy(boolean hasEnemy) {
         this.hasEnemy = hasEnemy;
     }
 
     /**
-     * Indique si la cellule contient un bouclier.
-     * @return true si oui, false sinon
+     * boolean de la cellule shield
+     * @return
      */
     public boolean isHasShield() {
         return hasShield;
-    }
-    public void setHasShield(boolean hasShield) {
+    }public void setHasShield(boolean hasShield) {
         this.hasShield = hasShield;
     }
 
     /**
-     * Indique si la cellule contient une potion.
-     * @return true si oui, false sinon
+     * boolean de la cellule potion
+     * @return
      */
     public boolean isHasPotion() {
         return hasPotion;
-    }
-    public void setHasPotion(boolean hasPotion) {
+    }public void setHasPotion(boolean hasPotion) {
         this.hasPotion = hasPotion;
     }
 
     /**
-     * Indique si la cellule contient une arme.
-     * @return true si oui, false sinon
+     * boolean de la cellule weapon
+     * @return
      */
     public boolean isHasWeapon() {
         return hasWeapon;
-    }
-    public void setHasWeapon(boolean hasWeapon) {
+    }public void setHasWeapon(boolean hasWeapon) {
         this.hasWeapon = hasWeapon;
     }
 
     /**
-     * Indique si la cellule contient un sort.
-     * @return true si oui, false sinon
+     * boolean de la cellule spell
+     * @return
      */
     public boolean isHasSpell() {
         return hasSpell;
-    }
-    public void setHasSpell(boolean hasSpell) {
+    }public void setHasSpell(boolean hasSpell) {
         this.hasSpell = hasSpell;
     }
 
+
     /**
-     * Représentation textuelle de la cellule.
-     * @return description sous forme de chaîne
+     * le toString
+     * @return
      */
     @Override
     public String toString() {

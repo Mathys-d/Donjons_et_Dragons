@@ -1,12 +1,12 @@
 package donjons_et_dragons.character;
 
 /**
- * Classe représentant un personnage.
+ * class Character
  */
 public class Character {
 
     /**
-     * Initialisation des variables.
+     * initialisation des variables
      */
     protected int id;
     protected String type;
@@ -18,11 +18,11 @@ public class Character {
     protected String defensiveEquipment;
 
     /**
-     * Constructeur pour la création d'un personnage.
-     * @param name nom du personnage
-     * @param type type de personnage
-     * @param position position initiale
-     * @param offensiveEquipment équipement offensif
+     * Constructeur pour la création d'un personnage
+     * @param name
+     * @param type
+     * @param position
+     * @param offensiveEquipment
      */
     public Character(String name, String type, int position, String offensiveEquipment) {
         this.name = name;
@@ -34,14 +34,14 @@ public class Character {
     }
 
     /**
-     * Constructeur pour la récupération depuis la BDD.
-     * @param id identifiant
-     * @param type type de personnage
-     * @param name nom du personnage
-     * @param hp points de vie
-     * @param str force
-     * @param offensive équipement offensif
-     * @param defensive équipement défensif
+     *  Constructeur pour la récupération depuis la BDD
+     * @param id
+     * @param type
+     * @param name
+     * @param hp
+     * @param str
+     * @param offensive
+     * @param defensive
      */
     public Character(int id, String type, String name, int hp, int str, String offensive, String defensive) {
         this.id = id;
@@ -53,7 +53,11 @@ public class Character {
         this.defensiveEquipment = defensive;
     }
 
-    // Getters
+
+    /**
+     * Getters
+     * @return
+     */
     public String getName() { return name; }
     public int getStr() { return str; }
     public int getHp() { return hp; }
@@ -62,34 +66,86 @@ public class Character {
     public String getOffensiveEquipment() { return offensiveEquipment; }
     public String getDefensiveEquipment() { return defensiveEquipment; }
 
-    // Setters
+    /**
+     * Setters
+     * @param id
+     */
     public void setId(int id) {this.id = id;}
-    public void setName(String name) { this.name = name; }
-    public void setHp(int hp) { this.hp = hp; }
-    public void setStr(int str) { this.str = str; }
-    public void setType(String type) { this.type = type; }
-    public void setPosition(int position) { this.position = position; }
-    public void setOffensiveEquipment(String offensiveEquipment) { this.offensiveEquipment = offensiveEquipment; }
-    public void setDefensiveEquipment(String defensiveEquipment) { this.defensiveEquipment = defensiveEquipment; }
 
     /**
-     * Méthode pour déplacer le personnage.
-     * @param steps nombre de pas à avancer
+     * Setters
+     * @param name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Setters
+     * @param hp
+     */
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    /**
+     *Setters
+     * @param str
+     */
+    public void setStr(int str) {
+        this.str = str;
+    }
+
+    /**
+     * Setters
+     * @param type
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * Setters
+     * @param position
+     */
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    /**
+     * Setters
+     * @param offensiveEquipment
+     */
+    public void setOffensiveEquipment(String offensiveEquipment) {
+        this.offensiveEquipment = offensiveEquipment;
+    }
+
+    /**
+     * Setters
+     * @param defensiveEquipment
+     */
+    public void setDefensiveEquipment(String defensiveEquipment) {
+        this.defensiveEquipment = defensiveEquipment;
+    }
+
+    /**
+     * methode bouger
+     * @param steps
      */
     public void move(int steps) {
         position += steps;
     }
 
     /**
-     * Définit la position de départ du personnage.
+     * methode de position de départ
      */
     public void defPosition() {
         position = 0;
     }
 
     /**
-     * Retourne une représentation textuelle complète du personnage.
-     * @return chaîne descriptive
+     * toString qui donne toutes les infos sur le character
+     * @return
      */
     @Override
     public String toString() {

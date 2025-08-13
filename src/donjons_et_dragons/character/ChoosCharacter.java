@@ -4,24 +4,21 @@ import donjons_et_dragons.ui.Menu;
 
 import java.util.Scanner;
 
-/**
- * Classe pour choisir et créer un personnage.
- */
 public class ChoosCharacter {
     protected final Scanner clavier = new Scanner(System.in);
     protected final Menu interfaceMenu;
 
     /**
-     * Constructeur pour la création du type de personnage.
-     * @param interfaceMenu interface utilisateur
+     * Constructeur pour la creation du type de character
+     * @param interfaceMenu
      */
     public ChoosCharacter(Menu interfaceMenu) {
         this.interfaceMenu = interfaceMenu;
     }
 
     /**
-     * Méthode qui crée le personnage avec son équipement.
-     * @return personnage créé
+     * methode qui cree le character avec son equipement
+     * @return
      */
     public Character ChooseCharacter() {
         String name = interfaceMenu.chooseName(clavier);
@@ -38,4 +35,5 @@ public class ChoosCharacter {
             return new Warrior(name, "sword");
         }
     }
+
 }
