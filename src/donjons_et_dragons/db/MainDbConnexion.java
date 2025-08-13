@@ -9,7 +9,7 @@ public class MainDbConnexion {
 
     protected static final String URL = "jdbc:mysql://localhost:3306/DnD";
     protected static final String USER = "root";
-    protected static final String PASSWORD = "1234";
+    protected static final String PASSWORD = "";
     public int id;
 
     // Test d'affichage des heros en BDD

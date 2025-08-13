@@ -35,5 +35,4 @@ public class ChoosCharacter {
             return new Warrior(name, "sword");
         }
     }
-
 }
